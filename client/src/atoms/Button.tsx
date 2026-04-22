@@ -5,18 +5,18 @@ type Variant = 'primary' | 'secondary' | 'gold' | 'outline' | 'ghost' | 'danger'
 type Size = 'sm' | 'md' | 'lg'
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-saffron hover:bg-saffron-light text-white shadow-md hover:shadow-lg',
-  secondary: 'bg-maroon hover:bg-maroon-dark text-white shadow-md hover:shadow-lg',
-  gold: 'bg-gold hover:bg-yellow-500 text-maroon font-semibold shadow-md',
-  outline: 'border-2 border-saffron text-saffron hover:bg-saffron hover:text-white',
-  ghost: 'text-maroon hover:bg-gold-light',
-  danger: 'bg-red-600 hover:bg-red-700 text-white shadow-md',
+  primary:   'bg-saffron hover:bg-saffron-light text-white shadow-temple hover:shadow-temple-md',
+  secondary: 'bg-maroon hover:bg-maroon-light text-white shadow-temple hover:shadow-temple-md',
+  gold:      'bg-gold hover:bg-gold-light text-maroon-dark font-semibold shadow-temple hover:shadow-temple-md',
+  outline:   'border-2 border-saffron text-saffron hover:bg-saffron hover:text-white',
+  ghost:     'text-maroon hover:bg-maroon-50 hover:text-maroon-light',
+  danger:    'bg-red-600 hover:bg-red-700 text-white shadow-temple',
 }
 
 const sizes: Record<Size, string> = {
-  sm: 'px-3 py-1.5 text-sm',
-  md: 'px-5 py-2.5 text-sm',
-  lg: 'px-6 py-3 text-base',
+  sm: 'px-4 py-1.5 text-xs',
+  md: 'px-6 py-2.5 text-sm',
+  lg: 'px-8 py-3.5 text-base',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -38,7 +38,10 @@ export default function Button({
   return (
     <button
       className={clsx(
-        'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-saffron focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
+        'inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200',
+        'focus:outline-none focus:ring-2 focus:ring-saffron/50 focus:ring-offset-2',
+        'disabled:opacity-50 disabled:cursor-not-allowed',
+        'active:scale-[0.97]',
         variants[variant],
         sizes[size],
         className

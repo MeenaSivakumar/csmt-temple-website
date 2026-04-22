@@ -5,14 +5,14 @@ type BadgeStatus =
   | 'reserved' | 'expired' | 'active' | 'inactive'
 
 const statusColors: Record<BadgeStatus, string> = {
-  pending: 'bg-yellow-100 text-yellow-800 border-yellow-300',
-  confirmed: 'bg-green-100 text-green-800 border-green-300',
-  rejected: 'bg-red-100 text-red-800 border-red-300',
-  cancelled: 'bg-gray-100 text-gray-600 border-gray-300',
-  reserved: 'bg-blue-100 text-blue-800 border-blue-300',
-  expired: 'bg-orange-100 text-orange-700 border-orange-300',
-  active: 'bg-green-100 text-green-800 border-green-300',
-  inactive: 'bg-gray-100 text-gray-600 border-gray-300',
+  pending:   'bg-gold-100   text-gold-dark   border-gold-pale',
+  confirmed: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  rejected:  'bg-red-50     text-red-700     border-red-200',
+  cancelled: 'bg-gray-100   text-gray-500    border-gray-200',
+  reserved:  'bg-saffron-50 text-saffron-dark border-saffron-100',
+  expired:   'bg-orange-50  text-orange-600  border-orange-200',
+  active:    'bg-emerald-50 text-emerald-700 border-emerald-200',
+  inactive:  'bg-gray-100   text-gray-500    border-gray-200',
 }
 
 interface BadgeProps {
@@ -25,8 +25,8 @@ export default function Badge({ label, status, className = '' }: BadgeProps) {
   return (
     <span
       className={clsx(
-        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border capitalize',
-        statusColors[status] ?? 'bg-gold-light text-maroon border-gold',
+        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border capitalize',
+        statusColors[status] ?? 'bg-gold-100 text-maroon border-gold-pale',
         className
       )}
     >
