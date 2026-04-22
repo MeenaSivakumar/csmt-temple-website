@@ -1,17 +1,18 @@
 import { AlertTriangle } from 'lucide-react'
 import Button from '../atoms/Button'
 import { selectConfirmModal } from '../store/slices/uiSlice'
+import { getConfirmCallback } from '../store/confirmCallback'
 import { useConfirm } from '../hooks/useConfirm'
 import { useAppSelector } from '../store/hooks'
 
 export default function ConfirmModal() {
-  const { open, title, message, onConfirm } = useAppSelector(selectConfirmModal)
+  const { open, title, message } = useAppSelector(selectConfirmModal)
   const { dismiss } = useConfirm()
 
   if (!open) return null
 
   const handleConfirm = () => {
-    onConfirm?.()
+    getConfirmCallback()?.()
     dismiss()
   }
 

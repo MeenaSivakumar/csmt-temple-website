@@ -11,7 +11,9 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (res) => res,
   (err) => {
-    if (err.response?.status === 401) {
+    // Trade-off: localStorage is susceptible to XSS; mitigated by strict CSP.
+    // httpOnly cookies would be more secure but require CORS + SameSite config.
+    if (err.response?.status === 401 && window.location.pathname !== '/login') {
       localStorage.removeItem('token')
       window.location.href = '/login'
     }

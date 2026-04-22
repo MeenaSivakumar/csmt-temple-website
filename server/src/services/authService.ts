@@ -1,13 +1,13 @@
 import jwt from 'jsonwebtoken'
+import type { StringValue } from 'ms'
 import User, { type IUser } from '../models/User.js'
+import { env } from '../config/env.js'
 
 interface RegisterInput { name: string; email: string; password: string }
 interface LoginInput { email: string; password: string }
 
 const signToken = (id: unknown): string =>
-  jwt.sign({ id }, process.env.JWT_SECRET as string, {
-    expiresIn: process.env.JWT_EXPIRES_IN ?? '7d',
-  })
+  jwt.sign({ id }, env.jwtSecret, { expiresIn: env.jwtExpiresIn as StringValue })
 
 const sanitize = (user: IUser) => ({
   _id: user._id,
@@ -33,9 +33,9 @@ export const loginService = async ({ email, password }: LoginInput) => {
   if (!user || !(await user.matchPassword(password)))
     throw Object.assign(new Error('Invalid email or password'), { statusCode: 401 })
 
-  user.lastLoginAt = new Date()
-  await user.save({ validateBeforeSave: false })
+  const now = new Date()
+  await User.updateOne({ _id: user._id }, { lastLoginAt: now })
 
   const token = signToken(user._id)
-  return { user: sanitize(user), token, loggedInAt: user.lastLoginAt.toISOString() }
+  return { user: { ...sanitize(user), lastLoginAt: now }, token, loggedInAt: now.toISOString() }
 }

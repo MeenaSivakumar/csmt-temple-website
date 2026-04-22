@@ -1,5 +1,6 @@
 import { useAppDispatch } from '../store/hooks'
 import { openConfirmModal, closeConfirmModal } from '../store/slices/uiSlice'
+import { setConfirmCallback } from '../store/confirmCallback'
 
 interface ConfirmOptions {
   title: string
@@ -10,11 +11,15 @@ interface ConfirmOptions {
 export function useConfirm() {
   const dispatch = useAppDispatch()
 
-  const confirm = (options: ConfirmOptions) => {
-    dispatch(openConfirmModal(options))
+  const confirm = ({ title, message, onConfirm }: ConfirmOptions) => {
+    setConfirmCallback(onConfirm)
+    dispatch(openConfirmModal({ open: true, title, message }))
   }
 
-  const dismiss = () => dispatch(closeConfirmModal())
+  const dismiss = () => {
+    setConfirmCallback(null)
+    dispatch(closeConfirmModal())
+  }
 
   return { confirm, dismiss }
 }

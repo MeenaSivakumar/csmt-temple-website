@@ -1,6 +1,7 @@
 import type { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 import User from '../models/User.js'
+import { env } from '../config/env.js'
 
 interface JwtPayload {
   id: string
@@ -15,7 +16,7 @@ export const requireAuth = async (
   if (!token) { res.fail('Not authenticated', 401); return }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload
+    const decoded = jwt.verify(token, env.jwtSecret) as JwtPayload
     const user = await User.findById(decoded.id).select('-password')
     if (!user) { res.fail('User not found', 401); return }
     req.user = user

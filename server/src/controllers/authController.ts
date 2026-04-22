@@ -3,7 +3,7 @@ import { registerService, loginService } from '../services/authService.js'
 
 export const register = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const result = await registerService(req.body as { name: string; email: string; password: string })
+    const result = await registerService(req.body)
     res.success(result, 201)
   } catch (err) {
     next(err)
@@ -12,7 +12,7 @@ export const register = async (req: Request, res: Response, next: NextFunction):
 
 export const login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const result = await loginService(req.body as { email: string; password: string })
+    const result = await loginService(req.body)
     res.success(result)
   } catch (err) {
     next(err)

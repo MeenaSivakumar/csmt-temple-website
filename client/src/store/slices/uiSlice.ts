@@ -5,7 +5,6 @@ interface ConfirmModalState {
   open: boolean
   title: string
   message: string
-  onConfirm: (() => void) | null
 }
 
 interface UiState {
@@ -15,7 +14,7 @@ interface UiState {
 
 const initialState: UiState = {
   mobileMenuOpen: false,
-  confirmModal: { open: false, title: '', message: '', onConfirm: null },
+  confirmModal: { open: false, title: '', message: '' },
 }
 
 const uiSlice = createSlice({
@@ -28,11 +27,11 @@ const uiSlice = createSlice({
     closeMobileMenu(state) {
       state.mobileMenuOpen = false
     },
-    openConfirmModal(state, { payload }: PayloadAction<Omit<ConfirmModalState, 'open'>>) {
-      state.confirmModal = { open: true, ...payload }
+    openConfirmModal(state, { payload }: PayloadAction<ConfirmModalState>) {
+      state.confirmModal = payload
     },
     closeConfirmModal(state) {
-      state.confirmModal = { open: false, title: '', message: '', onConfirm: null }
+      state.confirmModal = { open: false, title: '', message: '' }
     },
   },
 })
