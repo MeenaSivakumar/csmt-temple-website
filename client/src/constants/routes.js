@@ -1,0 +1,16 @@
+export const ROUTES = {
+  HOME: '/',
+  HALL_BOOKING: '/book-hall',
+  PUJA_BOOKING: '/book-puja',
+  MY_BOOKINGS: '/my-bookings',
+  LOGIN: '/login',
+  REGISTER: '/register',
+  ADMIN_LOGIN: '/admin/login',
+  ADMIN_DASHBOARD: '/admin',
+  ADMIN_CONTENT: '/admin/content',
+  ADMIN_HALLS: '/admin/halls',
+  ADMIN_PUJA_BOOKINGS: '/admin/puja-bookings',
+  ADMIN_PUJAS: '/admin/pujas',
+  ADMIN_PRIESTS: '/admin/priests',
+  ADMIN_SETTINGS: '/admin/settings',
+}
