@@ -17,19 +17,29 @@ export default function ConfirmModal() {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="bg-cream rounded-2xl shadow-2xl w-full max-w-md border border-gold-light">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      onClick={dismiss}
+    >
+      <div
+        className="bg-white rounded-2xl shadow-temple-lg w-full max-w-sm border border-gold-100 overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Gold accent bar */}
+        <div className="h-1 bg-gold-gradient" />
         <div className="p-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+          <div className="flex items-start gap-4 mb-4">
+            <div className="flex-shrink-0 w-10 h-10 bg-saffron-50 rounded-xl flex items-center justify-center border border-saffron-100">
               <AlertTriangle className="w-5 h-5 text-saffron" />
             </div>
-            <h3 className="text-lg font-semibold text-maroon font-devotional">{title}</h3>
+            <h3 className="text-base font-semibold text-maroon font-devotional leading-snug pt-1">
+              {title}
+            </h3>
           </div>
-          <p className="text-gray-600 text-sm mb-6">{message}</p>
+          <p className="text-gray-500 text-sm leading-relaxed mb-6 pl-14">{message}</p>
           <div className="flex gap-3 justify-end">
-            <Button variant="ghost" onClick={dismiss}>Cancel</Button>
-            <Button variant="danger" onClick={handleConfirm}>Confirm</Button>
+            <Button variant="ghost" size="sm" onClick={dismiss}>Cancel</Button>
+            <Button variant="danger" size="sm" onClick={handleConfirm}>Confirm</Button>
           </div>
         </div>
       </div>
