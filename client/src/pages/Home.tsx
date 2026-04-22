@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import HeroSection from '../organisms/HeroSection'
 import AnnouncementBanner from '../organisms/AnnouncementBanner'
 import EventsList from '../organisms/EventsList'
@@ -5,6 +6,7 @@ import DeityCarousel from '../organisms/DeityCarousel'
 import Divider from '../atoms/Divider'
 import Spinner from '../atoms/Spinner'
 import { usePublicContent } from '../hooks/useContent'
+import { ROUTES } from '../constants/routes'
 import type { ContentItem } from '../types/content.types'
 
 const byType = (items: ContentItem[], type: ContentItem['type']) =>
@@ -67,18 +69,18 @@ export default function Home() {
               Reserve a hall for your function or book a sacred puja ceremony with our priests.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/book-puja"
+              <Link
+                to={ROUTES.PUJA_BOOKING}
                 className="px-8 py-3 bg-saffron text-white font-semibold rounded-full shadow-lg hover:bg-saffron-light transition-colors text-sm"
               >
                 Book a Puja
-              </a>
-              <a
-                href="/book-hall"
+              </Link>
+              <Link
+                to={ROUTES.HALL_BOOKING}
                 className="px-8 py-3 border-2 border-gold/60 text-gold-light font-semibold rounded-full hover:bg-gold hover:text-maroon-dark hover:border-gold transition-colors text-sm"
               >
                 Book a Hall
-              </a>
+              </Link>
             </div>
           </div>
         </>

@@ -54,15 +54,3 @@ h1, h2, h3, h4, .font-devotional {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Temple card elevated shadow */
-.card-temple {
-  box-shadow: 0 2px 8px rgba(107, 30, 40, 0.08), 0 1px 3px rgba(107, 30, 40, 0.06);
-}
-.card-temple:hover {
-  box-shadow: 0 8px 24px rgba(107, 30, 40, 0.14), 0 2px 8px rgba(107, 30, 40, 0.08);
-}
-
-/* Gold shimmer border utility */
-.border-gold-shimmer {
-  border-image: linear-gradient(135deg, #B8860B, #EDD878, #B8860B) 1;
-}

@@ -48,7 +48,7 @@ export default function AdminSidebar() {
               `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
                 isActive
                   ? 'bg-saffron text-white shadow-sm'
-                  : 'text-cream/60 hover:bg-cream/8 hover:text-cream'
+                  : 'text-cream/60 hover:bg-white/10 hover:text-cream'
               }`
             }
           >
@@ -62,7 +62,7 @@ export default function AdminSidebar() {
       <div className="px-3 py-4 border-t border-cream/10">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 px-3 py-2.5 w-full rounded-xl text-sm font-medium text-cream/50 hover:bg-cream/8 hover:text-cream transition-all duration-150"
+          className="flex items-center gap-3 px-3 py-2.5 w-full rounded-xl text-sm font-medium text-cream/50 hover:bg-white/10 hover:text-cream transition-all duration-150"
         >
           <LogOut size={16} />
           Sign Out

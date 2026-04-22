@@ -18,7 +18,6 @@ export default {
       },
       backgroundImage: {
         'hero-gradient':   'linear-gradient(to bottom, rgba(74,16,24,0.75) 0%, rgba(74,16,24,0.35) 45%, rgba(28,18,8,0.70) 100%)',
-        'card-gradient':   'linear-gradient(135deg, #FEFCF7 0%, #F5EDDA 100%)',
         'gold-gradient':   'linear-gradient(135deg, #B8860B 0%, #EDD878 50%, #B8860B 100%)',
         'maroon-gradient': 'linear-gradient(180deg, #6B1E28 0%, #4A1018 100%)',
       },
