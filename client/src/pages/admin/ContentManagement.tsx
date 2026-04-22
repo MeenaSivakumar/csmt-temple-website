@@ -6,7 +6,7 @@ import Spinner from '../../atoms/Spinner'
 import ContentFormModal from '../../molecules/ContentFormModal'
 import { useConfirm } from '../../hooks/useConfirm'
 import { useAdminContent, useCreateContent, useUpdateContent, useDeleteContent } from '../../hooks/useContent'
-import type { ContentItem } from '../../api/content.api'
+import type { ContentItem } from '../../types/content.types'
 
 const TYPE_LABELS: Record<ContentItem['type'], string> = {
   event: 'Event',

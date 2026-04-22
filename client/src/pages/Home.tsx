@@ -5,7 +5,7 @@ import DeityCarousel from '../organisms/DeityCarousel'
 import Divider from '../atoms/Divider'
 import Spinner from '../atoms/Spinner'
 import { usePublicContent } from '../hooks/useContent'
-import type { ContentItem } from '../api/content.api'
+import type { ContentItem } from '../types/content.types'
 
 const byType = (items: ContentItem[], type: ContentItem['type']) =>
   items.filter((i) => i.type === type)

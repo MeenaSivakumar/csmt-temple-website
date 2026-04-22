@@ -5,7 +5,7 @@ import { toggleMobileMenu, closeMobileMenu, selectMobileMenuOpen } from '../stor
 import { selectCurrentUser, logout } from '../store/slices/authSlice'
 import { ROUTES } from '../constants/routes'
 
-const navLinks = [
+const publicLinks = [
   { to: ROUTES.HOME, label: 'Home' },
   { to: ROUTES.HALL_BOOKING, label: 'Book a Hall' },
   { to: ROUTES.PUJA_BOOKING, label: 'Book a Puja' },
@@ -23,6 +23,11 @@ export default function Navbar() {
     navigate(ROUTES.HOME)
   }
 
+  // My Bookings only appears when authenticated
+  const navLinks = user
+    ? [...publicLinks, { to: ROUTES.MY_BOOKINGS, label: 'My Bookings' }]
+    : publicLinks
+
   return (
     <nav className="sticky top-0 z-40 bg-cream/90 backdrop-blur-md border-b border-gold-light shadow-sm">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
@@ -39,6 +44,7 @@ export default function Navbar() {
             <NavLink
               key={to}
               to={to}
+              end={to === ROUTES.HOME}
               className={({ isActive }) =>
                 `text-sm font-medium transition-colors pb-0.5 border-b-2 ${
                   isActive
@@ -62,7 +68,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile hamburger */}
-        <button className="md:hidden p-2 text-maroon" onClick={() => dispatch(toggleMobileMenu())}>
+        <button className="md:hidden p-2 text-maroon" onClick={() => dispatch(toggleMobileMenu())} aria-label="Toggle menu">
           {isOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
@@ -74,6 +80,7 @@ export default function Navbar() {
             <NavLink
               key={to}
               to={to}
+              end={to === ROUTES.HOME}
               onClick={() => dispatch(closeMobileMenu())}
               className={({ isActive }) =>
                 `block py-2.5 text-sm font-medium border-b border-gold-light/50 ${

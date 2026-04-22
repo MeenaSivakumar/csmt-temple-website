@@ -25,7 +25,7 @@ export const addContent = async (
     const isActive = req.body.isActive !== 'false'
     const item = await svc.createContent(
       { ...req.body, imageUrl, isActive },
-      req.user!._id as string
+      req.user!._id.toString()
     )
     res.success(item, 201)
   } catch (err) { next(err) }

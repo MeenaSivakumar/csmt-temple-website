@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
+import type { AxiosError } from 'axios'
 import {
   getContent,
   getAdminContent,
@@ -10,6 +11,11 @@ import {
 
 export const CONTENT_QUERY_KEY = ['content'] as const
 export const ADMIN_CONTENT_QUERY_KEY = ['admin-content'] as const
+
+const getErrorMessage = (err: unknown, fallback: string): string => {
+  const axiosErr = err as AxiosError<{ message?: string }>
+  return axiosErr?.response?.data?.message ?? fallback
+}
 
 export const usePublicContent = () =>
   useQuery({
@@ -36,7 +42,7 @@ export const useCreateContent = () => {
   return useMutation({
     mutationFn: (data: FormData) => createContent(data),
     onSuccess: () => { toast.success('Content created'); invalidate() },
-    onError: () => toast.error('Failed to create content'),
+    onError: (err) => toast.error(getErrorMessage(err, 'Failed to create content')),
   })
 }
 
@@ -45,7 +51,7 @@ export const useUpdateContent = () => {
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: FormData }) => updateContent(id, data),
     onSuccess: () => { toast.success('Content updated'); invalidate() },
-    onError: () => toast.error('Failed to update content'),
+    onError: (err) => toast.error(getErrorMessage(err, 'Failed to update content')),
   })
 }
 
@@ -54,6 +60,6 @@ export const useDeleteContent = () => {
   return useMutation({
     mutationFn: (id: string) => deleteContent(id),
     onSuccess: () => { toast.success('Content deactivated'); invalidate() },
-    onError: () => toast.error('Failed to deactivate content'),
+    onError: (err) => toast.error(getErrorMessage(err, 'Failed to deactivate content')),
   })
 }

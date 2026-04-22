@@ -1,20 +1,8 @@
 import api from './axiosInstance'
 import type { ApiResponse } from '../types/api.types'
+import type { ContentItem } from '../types/content.types'
 
-export interface ContentItem {
-  _id: string
-  type: 'event' | 'deity_image' | 'announcement'
-  title: string
-  body?: string
-  imageUrl?: string
-  date?: string
-  isActive: boolean
-  publishedBy?: string
-  createdAt: string
-  updatedAt: string
-}
-
-export type ContentType = ContentItem['type']
+export type { ContentItem, ContentType } from '../types/content.types'
 
 export const getContent = () =>
   api.get<ApiResponse<ContentItem[]>>('/content')

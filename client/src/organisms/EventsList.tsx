@@ -1,5 +1,5 @@
 import EventCard from '../molecules/EventCard'
-import type { ContentItem } from '../api/content.api'
+import type { ContentItem } from '../types/content.types'
 
 interface Props {
   events: ContentItem[]

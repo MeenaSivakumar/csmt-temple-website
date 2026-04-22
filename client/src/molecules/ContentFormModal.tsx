@@ -5,7 +5,7 @@ import { z } from 'zod'
 import { X } from 'lucide-react'
 import Button from '../atoms/Button'
 import Input from '../atoms/Input'
-import type { ContentItem } from '../api/content.api'
+import type { ContentItem } from '../types/content.types'
 
 const schema = z.object({
   type: z.enum(['event', 'deity_image', 'announcement']),
@@ -55,8 +55,15 @@ export default function ContentFormModal({ item, onClose, onSubmit, loading }: P
   }, [onClose])
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      {/* Stop propagation so clicks inside the card don't close the modal */}
+      <div
+        className="bg-white rounded-2xl shadow-2xl w-full max-w-lg"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
           <h2 className="font-devotional text-maroon font-semibold">
             {item ? 'Edit Content' : 'Add Content'}

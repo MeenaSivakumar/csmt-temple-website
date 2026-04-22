@@ -3,19 +3,23 @@ import path from 'path'
 import fs from 'fs'
 
 const uploadsDir = path.join(process.cwd(), 'uploads')
-if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true })
+// mkdirSync with recursive: true is idempotent — safe to call unconditionally
+fs.mkdirSync(uploadsDir, { recursive: true })
 
 const storage = multer.diskStorage({
   destination: (_req, _file, cb) => cb(null, uploadsDir),
   filename: (_req, file, cb) => {
-    const ext = path.extname(file.originalname)
+    const ext = path.extname(file.originalname).toLowerCase()
     cb(null, `${Date.now()}-${Math.random().toString(36).slice(2)}${ext}`)
   },
 })
 
 const fileFilter: multer.Options['fileFilter'] = (_req, file, cb) => {
-  if (file.mimetype.startsWith('image/')) cb(null, true)
-  else cb(null, false)
+  if (file.mimetype.startsWith('image/')) {
+    cb(null, true)
+  } else {
+    cb(new Error('Only image files are allowed (jpeg, png, gif, webp, etc.)'))
+  }
 }
 
 export const upload = multer({

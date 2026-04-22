@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom'
 import heroImg from '../assets/hero.png'
+import { ROUTES } from '../constants/routes'
 
 export default function HeroSection() {
   return (
@@ -23,18 +25,18 @@ export default function HeroSection() {
           Book halls, pujas, and stay connected with temple events.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <a
-            href="/book-puja"
+          <Link
+            to={ROUTES.PUJA_BOOKING}
             className="px-8 py-3 bg-saffron text-white font-semibold rounded-full hover:bg-saffron-light transition-colors shadow-lg"
           >
             Book a Puja
-          </a>
-          <a
-            href="/book-hall"
+          </Link>
+          <Link
+            to={ROUTES.HALL_BOOKING}
             className="px-8 py-3 bg-transparent border-2 border-gold text-gold font-semibold rounded-full hover:bg-gold hover:text-maroon transition-colors"
           >
             Book a Hall
-          </a>
+          </Link>
         </div>
       </div>
     </section>
