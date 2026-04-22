@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, FileText, LogOut } from 'lucide-react'
+import { LayoutDashboard, FileText, Building2, LogOut } from 'lucide-react'
 import { useAppDispatch } from '../store/hooks'
 import { logout } from '../store/slices/authSlice'
 import { ROUTES } from '../constants/routes'
@@ -7,6 +7,7 @@ import { ROUTES } from '../constants/routes'
 const links = [
   { to: ROUTES.ADMIN_DASHBOARD, label: 'Dashboard', icon: LayoutDashboard },
   { to: ROUTES.ADMIN_CONTENT, label: 'Content', icon: FileText },
+  { to: ROUTES.ADMIN_HALLS, label: 'Hall Bookings', icon: Building2 },
 ]
 
 export default function AdminSidebar() {

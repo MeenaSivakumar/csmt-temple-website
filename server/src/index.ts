@@ -11,6 +11,7 @@ import { responseWrapper } from './middleware/responseWrapper.js'
 import { errorHandler } from './middleware/errorHandler.js'
 import authRoutes from './routes/auth.routes.js'
 import contentRoutes from './routes/content.routes.js'
+import hallRoutes from './routes/hall.routes.js'
 import adminRoutes from './routes/admin.routes.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -32,6 +33,7 @@ app.use('/uploads', express.static(path.join(__dirname, '../../uploads')))
 
 app.use('/api/auth', authLimiter, authRoutes)
 app.use('/api/content', contentRoutes)
+app.use('/api', hallRoutes)
 app.use('/api/admin', adminRoutes)
 
 app.use(errorHandler)

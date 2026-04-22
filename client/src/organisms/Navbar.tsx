@@ -9,6 +9,7 @@ const navLinks = [
   { to: ROUTES.HOME, label: 'Home' },
   { to: ROUTES.HALL_BOOKING, label: 'Book a Hall' },
   { to: ROUTES.PUJA_BOOKING, label: 'Book a Puja' },
+  { to: ROUTES.MY_BOOKINGS, label: 'My Bookings' },
 ]
 
 export default function Navbar() {
