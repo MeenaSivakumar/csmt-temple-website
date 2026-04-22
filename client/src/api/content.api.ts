@@ -1,4 +1,5 @@
 import api from './axiosInstance'
+import type { ApiResponse } from '../types/api.types'
 
 export interface ContentItem {
   _id: string
@@ -8,15 +9,24 @@ export interface ContentItem {
   imageUrl?: string
   date?: string
   isActive: boolean
+  publishedBy?: string
   createdAt: string
+  updatedAt: string
 }
 
-export const getContent = () => api.get<{ data: ContentItem[] }>('/content')
+export type ContentType = ContentItem['type']
 
-export const createContent = (data: FormData | Partial<ContentItem>) =>
-  api.post('/admin/content', data)
+export const getContent = () =>
+  api.get<ApiResponse<ContentItem[]>>('/content')
 
-export const updateContent = (id: string, data: FormData | Partial<ContentItem>) =>
-  api.put(`/admin/content/${id}`, data)
+export const getAdminContent = () =>
+  api.get<ApiResponse<ContentItem[]>>('/admin/content')
 
-export const deleteContent = (id: string) => api.delete(`/admin/content/${id}`)
+export const createContent = (data: FormData) =>
+  api.post<ApiResponse<ContentItem>>('/admin/content', data)
+
+export const updateContent = (id: string, data: FormData) =>
+  api.put<ApiResponse<ContentItem>>(`/admin/content/${id}`, data)
+
+export const deleteContent = (id: string) =>
+  api.delete<ApiResponse<ContentItem>>(`/admin/content/${id}`)

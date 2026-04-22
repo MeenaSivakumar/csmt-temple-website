@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import AdminDashboard from './pages/admin/Dashboard'
+import ContentManagement from './pages/admin/ContentManagement'
 import { ROUTES } from './constants/routes'
 
 const router = createBrowserRouter([
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       { path: ROUTES.ADMIN_DASHBOARD, element: <AdminDashboard /> },
+      { path: ROUTES.ADMIN_CONTENT, element: <ContentManagement /> },
     ],
   },
 ])
