@@ -25,4 +25,7 @@ const dynamicContentSchema = new mongoose.Schema<IDynamicContent>(
   { timestamps: true }
 )
 
+// Compound index: active content queries filtered & sorted by creation date
+dynamicContentSchema.index({ isActive: 1, createdAt: -1 })
+
 export default mongoose.model<IDynamicContent>('DynamicContent', dynamicContentSchema)
